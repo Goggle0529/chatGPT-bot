@@ -9,6 +9,8 @@ public class Choices {
 
     private int index;
 
+    private Message message;
+
     private String logprobs;
 
     private String finish_reason;
@@ -29,6 +31,14 @@ public class Choices {
         this.index = index;
     }
 
+    public Message getMessage() {
+        return message;
+    }
+
+    public void setMessage(Message message) {
+        this.message = message;
+    }
+
     public String getLogprobs() {
         return logprobs;
     }
@@ -45,4 +55,14 @@ public class Choices {
         this.finish_reason = finish_reason;
     }
 
+    @Override
+    public String toString() {
+        return "Choices{" +
+                "text='" + text + '\'' +
+                ", index=" + index +
+                ", message='" + message + '\'' +
+                ", logprobs='" + logprobs + '\'' +
+                ", finish_reason='" + finish_reason + '\'' +
+                '}';
+    }
 }

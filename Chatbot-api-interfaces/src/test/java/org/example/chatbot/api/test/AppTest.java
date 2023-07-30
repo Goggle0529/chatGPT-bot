@@ -66,7 +66,6 @@ public class AppTest {
         }
     }
 
-    //TODO 请求返回429，意思是请求次数过多。但是并没有。回头再试试
     @Test
     public void test_chatGPT() throws IOException {
         CloseableHttpClient httpClient = HttpClientBuilder.create().build();
@@ -78,8 +77,7 @@ public class AppTest {
         String paramJson = "{\n" +
                 "     \"model\": \"gpt-3.5-turbo\",\n" +
                 "     \"messages\": [{\"role\": \"user\", \"content\": \"Say this is a test!\"}],\n" +
-                "     \"temperature\": 0.7\n" +
-                "   }";
+                "}";
 
         StringEntity stringEntity = new StringEntity(paramJson, ContentType.create("text/json", "UTF-8"));
         post.setEntity(stringEntity);

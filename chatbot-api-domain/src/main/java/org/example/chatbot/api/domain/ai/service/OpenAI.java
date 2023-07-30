@@ -40,7 +40,7 @@ public class OpenAI implements IOpenAI {
         String paramJson = "{\n" +
                 "     \"model\": \"gpt-3.5-turbo\",\n" +
                 "     \"messages\": [{\"role\": \"user\", \"content\": \"" + question + "\"}],\n" +
-                "     \"temperature\": 0.7\n" +
+                "     \"temperature\": 0\n" +
                 "   }";
 
         StringEntity stringEntity = new StringEntity(paramJson, ContentType.create("text/json", "UTF-8"));
@@ -49,12 +49,16 @@ public class OpenAI implements IOpenAI {
         CloseableHttpResponse response = httpClient.execute(post);
         if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
             String jsonStr = EntityUtils.toString(response.getEntity());
+//            logger.info("jsonStr: {}", jsonStr);
             AIAnswer aiAnswer = JSON.parseObject(jsonStr, AIAnswer.class);
+//            logger.info("aiAnswer: {}", aiAnswer.toString());
             StringBuilder answers = new StringBuilder();
-            List<Choices> choices =aiAnswer.getChoices();
+            List<Choices> choices = aiAnswer.getChoices();
+//            logger.info("choices: {}", choices);
             for (Choices choice : choices) {
-                answers.append(choice.getText());
+                answers.append(choice.getMessage().getContent());
             }
+//            logger.info("answers: {}", answers);
             return answers.toString();
         } else {
             throw new RuntimeException("api.openai.com Err Code is " + response.getStatusLine().getStatusCode());

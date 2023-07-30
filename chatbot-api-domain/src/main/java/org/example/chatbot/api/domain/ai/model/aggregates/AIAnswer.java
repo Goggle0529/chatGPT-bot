@@ -47,4 +47,14 @@ public class AIAnswer {
         return this.choices;
     }
 
+    @Override
+    public String toString() {
+        return "AIAnswer{" +
+                "id='" + id + '\'' +
+                ", object='" + object + '\'' +
+                ", created=" + created +
+                ", model='" + model + '\'' +
+                ", choices=" + choices +
+                '}';
+    }
 }
