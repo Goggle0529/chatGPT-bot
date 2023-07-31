@@ -61,7 +61,7 @@ public class ChatBotSchedule {
 
             // 1.检索问题
             UnansweredQuestionsAggregates unansweredQuestionsAggregates = zsxqApi.queryUnansweredQuestionsTopicId(groupId, cookie);
-            logger.info("测试结果： {}", JSON.toJSONString(unansweredQuestionsAggregates));
+            logger.info("检索结果： {}", JSON.toJSONString(unansweredQuestionsAggregates));
             List<Topics> topics = unansweredQuestionsAggregates.getResp_data().getTopics();
             if (topics == null || topics.isEmpty()) {
                 logger.info("本次检索未查询到待回答问题");
@@ -74,7 +74,7 @@ public class ChatBotSchedule {
 
             // 3.问题回复
             boolean status = zsxqApi.answer(groupId, cookie, topic.getTopic_id(), answer, false);
-            logger.info("编号： {} 问题： {} 回答： {} 状态：{}", topic.getTopic_id(), topic.getQuestion(), topic.getQuestion().getText(), answer, status);
+            logger.info("编号：{} 问题：{} 回答：{} 状态：{}", topic.getTopic_id(), topic.getQuestion().getText(), answer, status);
         } catch (Exception e) {
             logger.info("自动回答问题异常", e);
         }

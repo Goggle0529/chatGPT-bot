@@ -10,7 +10,7 @@
   <name>Chatbot-api</name>
   <url>http://maven.apache.org</url>
     <modules>
-        <module>chatbot-api-domain</module>
+      <module>chatbot-api-domain</module>
       <module>Chatbot-api-infrastructure</module>
       <module>Chatbot-api-application</module>
       <module>Chatbot-api-interfaces</module>
